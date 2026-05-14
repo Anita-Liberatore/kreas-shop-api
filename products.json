@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "name": "Sneakers Urban Pro",
+    "category": "Footwear",
+    "price": 89.99,
+    "description": "Sneakers urbane leggere con suola in gomma antiscivolo e tomaia in mesh traspirante. Perfette per la città e il tempo libero.",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80"
+  },
+  {
+    "id": 2,
+    "name": "Felpa Oversize Essential",
+    "category": "Clothing",
+    "price": 54.99,
+    "description": "Felpa in cotone organico 380g/m², taglio oversize con cappuccio doppio strato. Disponibile in tonalità neutre.",
+    "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80"
+  },
+  {
+    "id": 3,
+    "name": "Cuffia Bluetooth Studio",
+    "category": "Electronics",
+    "price": 129.00,
+    "description": "Cuffia wireless over-ear con cancellazione attiva del rumore, 30h di autonomia e driver 40mm per un suono cristallino.",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80"
+  },
+  {
+    "id": 4,
+    "name": "Zaino Explorer 30L",
+    "category": "Accessories",
+    "price": 69.99,
+    "description": "Zaino resistente all'acqua da 30 litri con scomparto laptop fino a 15\", imbottiture ergonomiche e tasca frontale organizer.",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80"
+  },
+  {
+    "id": 5,
+    "name": "Smartwatch Fitness X1",
+    "category": "Electronics",
+    "price": 199.00,
+    "description": "Smartwatch con GPS integrato, monitoraggio continuo della frequenza cardiaca, 50+ modalità sport e 7 giorni di autonomia.",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80"
+  },
+  {
+    "id": 6,
+    "name": "T-Shirt Essential Pack",
+    "category": "Clothing",
+    "price": 34.99,
+    "description": "Pack da 3 t-shirt in jersey di cotone pettinato 180g/m². Taglio classico senza cuciture laterali per massimo comfort.",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80"
+  },
+  {
+    "id": 7,
+    "name": "Occhiali da Sole Retro",
+    "category": "Accessories",
+    "price": 49.99,
+    "description": "Occhiali con montatura in acetato leggero e lenti polarizzate UV400. Stile retrò rivisitato in chiave contemporanea.",
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80"
+  },
+  {
+    "id": 8,
+    "name": "Giacca Softshell Trail",
+    "category": "Clothing",
+    "price": 119.00,
+    "description": "Giacca softshell 3 strati impermeabile e antivento con tecnologia DWR. Collo alto, tasche con zip e polsini regolabili.",
+    "image": "https://images.unsplash.com/photo-1548126032-079a0fb0099d?w=600&q=80"
+  },
+  {
+    "id": 9,
+    "name": "Portafoglio Slim Leather",
+    "category": "Accessories",
+    "price": 39.99,
+    "description": "Portafoglio sottile in vera pelle vegetale con protezione RFID. 6 tasche per carte, 2 scomparti banconote.",
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80"
+  },
+  {
+    "id": 10,
+    "name": "Cap Logo Ricamato",
+    "category": "Accessories",
+    "price": 24.99,
+    "description": "Cappellino baseball in twill di cotone con logo ricamato frontale e chiusura posteriore regolabile in metallo.",
+    "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80"
+  },
+  {
+    "id": 11,
+    "name": "Chelsea Boots in Pelle",
+    "category": "Footwear",
+    "price": 149.00,
+    "description": "Chelsea boots artigianali in pelle pieno fiore con elastico laterale e suola in cuoio naturale. Finitura cerata a mano.",
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80"
+  },
+  {
+    "id": 12,
+    "name": "Running Shoes Pace 2.0",
+    "category": "Footwear",
+    "price": 109.99,
+    "description": "Scarpe da corsa con intersuola in schiuma reattiva e drop 8mm. Ideali per asfalto e percorsi misti fino a 10km.",
+    "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80"
+  },
+  {
+    "id": 13,
+    "name": "Jeans Slim Tapered",
+    "category": "Clothing",
+    "price": 74.99,
+    "description": "Jeans in denim stretch 98% cotone, taglio slim con gamba affusolata. Trattamento stone-wash leggero.",
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80"
+  },
+  {
+    "id": 14,
+    "name": "Borraccia Termica 500ml",
+    "category": "Accessories",
+    "price": 29.99,
+    "description": "Borraccia in acciaio inox a doppia parete. Mantiene le bevande calde 12h e fredde 24h. Design minimal con bocchino largo.",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80"
+  },
+  {
+    "id": 15,
+    "name": "Stivali da Trekking Alpine",
+    "category": "Footwear",
+    "price": 179.00,
+    "description": "Stivali da montagna impermeabili con membrana Gore-Tex, suola Vibram e protezione della caviglia rinforzata.",
+    "image": "https://images.unsplash.com/photo-1542621334-a254cf47733d?w=600&q=80"
+  },
+  {
+    "id": 16,
+    "name": "Maglione Collo Alto",
+    "category": "Clothing",
+    "price": 89.99,
+    "description": "Maglione a collo alto in lana merino extrafine 18 micron. Lavorazione a costine, leggerissimo e caldo.",
+    "image": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80"
+  },
+  {
+    "id": 17,
+    "name": "Camicia Oxford Button-Down",
+    "category": "Clothing",
+    "price": 59.99,
+    "description": "Camicia in popeline Oxford 100% cotone con collo button-down e tasca sul petto. Lavabile a 40°.",
+    "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80"
+  },
+  {
+    "id": 18,
+    "name": "Blazer Strutturato",
+    "category": "Clothing",
+    "price": 139.00,
+    "description": "Blazer monopetto in misto lana con spalle leggere e fodera in acetato. Adatto sia a look formali che casual.",
+    "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80"
+  },
+  {
+    "id": 19,
+    "name": "Cappotto Camel Oversize",
+    "category": "Clothing",
+    "price": 219.00,
+    "description": "Cappotto doppio petto in misto lana camel, taglio oversize con cintura removibile e bottoni in corno.",
+    "image": "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=600&q=80"
+  },
+  {
+    "id": 20,
+    "name": "Auricolari TWS Pro",
+    "category": "Electronics",
+    "price": 89.99,
+    "description": "Auricolari true wireless con driver da 12mm, ANC ibrido, resistenza IPX5 e autonomia totale di 32h con case.",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&q=80"
+  },
+  {
+    "id": 21,
+    "name": "Sandali Comfort Plus",
+    "category": "Footwear",
+    "price": 49.99,
+    "description": "Sandali con footbed anatomico in memory foam, cinturini regolabili e suola in EVA ultraleggera. Unisex.",
+    "image": "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=600&q=80"
+  },
+  {
+    "id": 22,
+    "name": "Sciarpa Cashmere Blend",
+    "category": "Accessories",
+    "price": 64.99,
+    "description": "Sciarpa in misto cashmere e lana (70/30), trama a spina di pesce, dimensioni 180x35cm. Ultra morbida.",
+    "image": "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=600&q=80"
+  },
+  {
+    "id": 23,
+    "name": "Slip-On Canvas",
+    "category": "Footwear",
+    "price": 39.99,
+    "description": "Scarpe slip-on in tela di cotone con interno in spugna e suola in gomma flessibile. Stile casual senza lacci.",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&q=80"
+  },
+  {
+    "id": 24,
+    "name": "Speaker Portatile 360°",
+    "category": "Electronics",
+    "price": 79.99,
+    "description": "Altoparlante Bluetooth 5.0 impermeabile IP67, suono omnidirezionale, 24h di autonomia e ricarica USB-C.",
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&q=80"
+  }
+]

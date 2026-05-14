@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kreas Shop API</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="container position-relative" style="z-index:1">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-6">
+          <span class="badge-pill mb-4 d-inline-flex">
+            <i class="bi bi-bag-fill"></i> Mobile E-commerce · Free · No Auth
+          </span>
+          <h1 class="mb-3">Kreas<br><em>Shop API</em></h1>
+          <p class="mb-5">Ready-to-use product catalog for your Vue.js mobile e-commerce. 24 products across 4 categories — fetch and build.</p>
+
+          <div class="endpoint-box">
+            <span class="method">GET</span>
+            <span class="url mono" id="endpoint-url">https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json</span>
+            <button class="btn-copy" onclick="copyEndpoint()">
+              <i class="bi bi-clipboard me-1"></i><span id="copy-label">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile phone preview -->
+        <div class="col-lg-6">
+          <div class="phone-wrap">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen" id="phone-screen">
+
+                <!-- Top bar -->
+                <div class="phone-topbar">
+                  <span class="brand">KREAS</span>
+                  <button class="cart-btn" onclick="openCartPreview()">
+                    <i class="bi bi-bag"></i>
+                    <span class="cart-count" id="phone-cart-count">0</span>
+                  </button>
+                </div>
+
+                <!-- Category filters -->
+                <div class="phone-filters" id="phone-filters">
+                  <button class="phone-filter-btn active" onclick="phoneFilter(this,'All')">All</button>
+                </div>
+
+                <!-- Product grid -->
+                <div class="phone-product-grid" id="phone-grid">
+                  <!-- JS rendered -->
+                </div>
+
+                <!-- Detail slide -->
+                <div class="phone-detail" id="phone-detail">
+                  <button class="phone-detail-back" onclick="closeDetail()">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <div class="phone-detail-img">
+                    <img id="detail-img" src="" alt="" />
+                  </div>
+                  <div class="phone-detail-body">
+                    <div class="phone-detail-cat" id="detail-cat"></div>
+                    <div class="phone-detail-name" id="detail-name"></div>
+                    <div class="phone-detail-price" id="detail-price"></div>
+                    <div class="phone-detail-desc" id="detail-desc"></div>
+                    <button class="phone-detail-btn" onclick="addToCartFromDetail()">
+                      <i class="bi bi-bag-plus me-2"></i>Add to cart
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATS ══════════ -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="row g-3 text-center">
+        <div class="col-6 col-md-3">
+          <div class="stat-item"><div class="num">24</div><div class="lbl">Products</div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item"><div class="num">4</div><div class="lbl">Categories</div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item"><div class="num">5</div><div class="lbl">Fields per item</div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item"><div class="num">0</div><div class="lbl">Auth required</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SCHEMA + DISCOUNT ══════════ -->
+  <section class="py-5 section-light" style="background:#fff">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+
+        <!-- Schema -->
+        <div class="col-lg-7">
+          <span class="section-chip mb-2"><i class="bi bi-braces"></i> Schema</span>
+          <h2 class="section-title mb-1" style="color:#111">Product object</h2>
+          <p class="section-sub mb-4" style="color:#6b7280">Every item in the array exposes these 5 fields.</p>
+
+          <div class="table-responsive">
+            <table class="table schema-table mb-0">
+              <thead>
+                <tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>id</code></td>
+                  <td><span class="type-badge">number</span></td>
+                  <td>Unique identifier</td>
+                  <td class="mono" style="color:#6b7280">1</td>
+                </tr>
+                <tr>
+                  <td><code>name</code></td>
+                  <td><span class="type-badge">string</span></td>
+                  <td>Product name</td>
+                  <td class="mono" style="color:#6b7280">"Sneakers Urban Pro"</td>
+                </tr>
+                <tr>
+                  <td><code>category</code></td>
+                  <td><span class="type-badge">string</span></td>
+                  <td>One of 4 categories</td>
+                  <td class="mono" style="color:#6b7280">"Footwear"</td>
+                </tr>
+                <tr>
+                  <td><code>price</code></td>
+                  <td><span class="type-badge">number</span></td>
+                  <td>Price in EUR</td>
+                  <td class="mono" style="color:#6b7280">89.99</td>
+                </tr>
+                <tr>
+                  <td><code>description</code></td>
+                  <td><span class="type-badge">string</span></td>
+                  <td>Short product description</td>
+                  <td class="mono" style="color:#6b7280">"Sneakers urbane..."</td>
+                </tr>
+                <tr>
+                  <td><code>image</code></td>
+                  <td><span class="type-badge">string</span></td>
+                  <td>Unsplash image URL (600px)</td>
+                  <td class="mono" style="color:#6b7280">"https://images.unsplash..."</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Discount rule -->
+        <div class="col-lg-5">
+          <span class="section-chip mb-2"><i class="bi bi-percent"></i> Business rule</span>
+          <h2 class="section-title mb-4" style="color:#111">Discount logic</h2>
+
+          <div class="discount-box mb-4">
+            <div class="d-flex align-items-center gap-4 mb-3">
+              <div class="discount-badge">10%</div>
+              <div>
+                <h5 class="mb-1">Cart discount</h5>
+                <p>When the customer adds <strong style="color:#e8c547">more than 3 products</strong> to the cart, a <strong style="color:#e8c547">10% discount</strong> is automatically applied to the total.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-block">
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="switchDiscount(this,'disc-js')">JavaScript</button>
+              <button class="tab-btn" onclick="switchDiscount(this,'disc-vue')">Vue 3</button>
+            </div>
+            <div id="disc-js">
+<pre><span class="kw">const</span> total = cart.<span class="fn">reduce</span>(
+  (sum, item) => sum + item.price, <span class="num">0</span>
+)
+
+<span class="kw">const</span> discount = cart.length > <span class="num">3</span>
+  ? total * <span class="num">0.10</span>
+  : <span class="num">0</span>
+
+<span class="kw">const</span> finalTotal = total - discount</pre>
+            </div>
+            <div id="disc-vue" style="display:none">
+<pre><span class="cm">// computed properties</span>
+<span class="kw">const</span> total = <span class="fn">computed</span>(() =>
+  cart.value.<span class="fn">reduce</span>((s, i) => s + i.price, <span class="num">0</span>)
+)
+
+<span class="kw">const</span> discount = <span class="fn">computed</span>(() =>
+  cart.value.length > <span class="num">3</span> ? total.value * <span class="num">0.10</span> : <span class="num">0</span>
+)
+
+<span class="kw">const</span> finalTotal = <span class="fn">computed</span>(() =>
+  total.value - discount.value
+)</pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CODE EXAMPLES ══════════ -->
+  <section class="py-5" style="background:var(--color-surface)">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <span class="section-chip mb-2"><i class="bi bi-code-slash"></i> Integration</span>
+          <h2 class="section-title mb-2">Fetch the data</h2>
+          <p class="section-sub mb-0">Drop this into your Vue.js component and start building.</p>
+        </div>
+        <div class="col-lg-7">
+          <div class="code-block">
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="switchTab(this,'tab-js')">JavaScript</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-vue')">Vue 3</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-axios')">Axios</button>
+            </div>
+
+            <div id="tab-js">
+<pre><span class="kw">const</span> API = <span class="str">'https://raw.githubusercontent.com/
+  Anita-Liberatore/kreas-shop-api/master/products.json'</span>
+
+<span class="kw">const</span> <span class="fn">getProducts</span> = <span class="kw">async</span> () => {
+  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(API)
+  <span class="kw">return</span> res.<span class="fn">json</span>() <span class="cm">// Array of 24 products</span>
+}</pre>
+            </div>
+
+            <div id="tab-vue" style="display:none">
+<pre><span class="cm">// Vue 3 — Composition API</span>
+<span class="kw">import</span> { ref, onMounted } <span class="kw">from</span> <span class="str">'vue'</span>
+
+<span class="kw">const</span> products = <span class="fn">ref</span>([])
+
+<span class="fn">onMounted</span>(<span class="kw">async</span> () => {
+  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'https://raw.githubusercontent.com/
+    Anita-Liberatore/kreas-shop-api/master/products.json'</span>)
+  products.value = <span class="kw">await</span> res.<span class="fn">json</span>()
+})</pre>
+            </div>
+
+            <div id="tab-axios" style="display:none">
+<pre><span class="cm">// Axios</span>
+<span class="kw">import</span> axios <span class="kw">from</span> <span class="str">'axios'</span>
+
+<span class="kw">const</span> { data: products } = <span class="kw">await</span> axios.<span class="fn">get</span>(
+  <span class="str">'https://raw.githubusercontent.com/
+  Anita-Liberatore/kreas-shop-api/master/products.json'</span>
+)
+<span class="cm">// products → Array of 24 items</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <div class="container">
+      <div class="row align-items-center g-3">
+        <div class="col-md-6">
+          <strong>Kreas Shop API</strong> &mdash; Mock product catalog for mobile e-commerce exercises.
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="https://github.com/Anita-Liberatore/kreas-shop-api" target="_blank">
+            <i class="bi bi-github me-1"></i> View on GitHub
+          </a>
+          <span class="mx-2" style="color:var(--color-border)">·</span>
+          <a href="https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json" target="_blank">
+            <i class="bi bi-filetype-json me-1"></i> Raw JSON
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+    /* ── CONFIG ─────────────────────────────────────────────── */
+
+    const API_URL = 'https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json'
+
+    const CATEGORY_ICONS = {
+      'Footwear':    'bi-boot',
+      'Clothing':    'bi-bag',
+      'Accessories': 'bi-gem',
+      'Electronics': 'bi-cpu',
+    }
+
+    /* ── STATE ──────────────────────────────────────────────── */
+
+    let allProducts    = []
+    let phoneFilter_   = 'All'
+    let cart           = []
+    let detailProduct  = null
+
+    /* ── INIT ───────────────────────────────────────────────── */
+
+    async function init() {
+      renderPhoneSkeletons()
+      try {
+        const res  = await fetch(API_URL)
+        allProducts = await res.json()
+        buildPhoneFilters()
+        renderPhoneGrid()
+      } catch {
+        document.getElementById('phone-grid').innerHTML =
+          `<div style="grid-column:1/-1;text-align:center;padding:24px;color:#9ca3af;font-size:.75rem">
+            <i class="bi bi-exclamation-triangle d-block mb-2" style="font-size:1.5rem"></i>
+            Could not load products.
+          </div>`
+      }
+    }
+
+    /* ── PHONE SKELETONS ────────────────────────────────────── */
+
+    function renderPhoneSkeletons() {
+      document.getElementById('phone-grid').innerHTML =
+        Array.from({length: 6}).map(() => `
+          <div style="background:#fff;border-radius:12px;overflow:hidden">
+            <div class="skeleton" style="height:110px;border-radius:0"></div>
+            <div style="padding:8px">
+              <div class="skeleton mb-1" style="height:10px;width:80%"></div>
+              <div class="skeleton" style="height:10px;width:50%"></div>
+            </div>
+          </div>`).join('')
+    }
+
+    /* ── PHONE FILTERS ──────────────────────────────────────── */
+
+    function buildPhoneFilters() {
+      const cats = [...new Set(allProducts.map(p => p.category))].sort()
+      const bar  = document.getElementById('phone-filters')
+      cats.forEach(cat => {
+        const btn = document.createElement('button')
+        btn.className = 'phone-filter-btn'
+        btn.textContent = cat
+        btn.onclick = () => phoneFilter(btn, cat)
+        bar.appendChild(btn)
+      })
+    }
+
+    function phoneFilter(el, cat) {
+      phoneFilter_ = cat
+      document.querySelectorAll('.phone-filter-btn').forEach(b => b.classList.remove('active'))
+      el.classList.add('active')
+      renderPhoneGrid()
+    }
+
+    /* ── PHONE GRID ─────────────────────────────────────────── */
+
+    function renderPhoneGrid() {
+      const list = phoneFilter_ === 'All'
+        ? allProducts
+        : allProducts.filter(p => p.category === phoneFilter_)
+
+      document.getElementById('phone-grid').innerHTML = list.slice(0, 12).map(p => `
+        <div class="phone-product-card" onclick="openDetail(${p.id})">
+          <div class="phone-card-img">
+            <img src="${p.image}" alt="${p.name}" loading="lazy"
+                 onerror="this.src='https://placehold.co/300x220/1f1f1f/e8c547?text=${encodeURIComponent(p.name[0])}'" />
+            <span class="phone-cat-chip">${p.category}</span>
+          </div>
+          <div class="phone-card-body">
+            <div class="phone-card-name">${p.name}</div>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="phone-card-price">€${p.price.toFixed(2)}</span>
+              <button class="phone-card-add" onclick="event.stopPropagation();addToCart(${p.id})">
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>`).join('')
+    }
+
+    /* ── DETAIL ─────────────────────────────────────────────── */
+
+    function openDetail(id) {
+      const p = allProducts.find(x => x.id === id)
+      if (!p) return
+      detailProduct = p
+      document.getElementById('detail-img').src   = p.image
+      document.getElementById('detail-cat').textContent   = p.category
+      document.getElementById('detail-name').textContent  = p.name
+      document.getElementById('detail-price').textContent = `€${p.price.toFixed(2)}`
+      document.getElementById('detail-desc').textContent  = p.description
+      document.getElementById('phone-detail').classList.add('open')
+    }
+
+    function closeDetail() {
+      document.getElementById('phone-detail').classList.remove('open')
+      detailProduct = null
+    }
+
+    function addToCartFromDetail() {
+      if (detailProduct) {
+        addToCart(detailProduct.id)
+        closeDetail()
+      }
+    }
+
+    /* ── CART ───────────────────────────────────────────────── */
+
+    function addToCart(id) {
+      const p = allProducts.find(x => x.id === id)
+      if (!p) return
+      cart.push(p)
+      document.getElementById('phone-cart-count').textContent = cart.length
+    }
+
+    function openCartPreview() {
+      if (!cart.length) return
+      const total    = cart.reduce((s, i) => s + i.price, 0)
+      const discount = cart.length > 3 ? total * 0.10 : 0
+      const final    = total - discount
+      alert(
+        `🛍 Cart (${cart.length} items)\n` +
+        `Subtotal: €${total.toFixed(2)}\n` +
+        (discount > 0 ? `Discount (10%): -€${discount.toFixed(2)}\n` : '') +
+        `Total: €${final.toFixed(2)}`
+      )
+    }
+
+    /* ── CODE TABS ──────────────────────────────────────────── */
+
+    function switchTab(el, tabId) {
+      document.querySelectorAll('#tab-js,#tab-vue,#tab-axios').forEach(t => t.style.display = 'none')
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'))
+      document.getElementById(tabId).style.display = 'block'
+      el.classList.add('active')
+    }
+
+    function switchDiscount(el, tabId) {
+      document.querySelectorAll('#disc-js,#disc-vue').forEach(t => t.style.display = 'none')
+      document.querySelectorAll('.code-block .tab-btn').forEach(b => {
+        if (b.closest('.code-block') === el.closest('.code-block')) b.classList.remove('active')
+      })
+      document.getElementById(tabId).style.display = 'block'
+      el.classList.add('active')
+    }
+
+    /* ── COPY ───────────────────────────────────────────────── */
+
+    function copyEndpoint() {
+      const url = document.getElementById('endpoint-url').textContent.trim()
+      navigator.clipboard.writeText(url).then(() => {
+        const lbl = document.getElementById('copy-label')
+        lbl.textContent = 'Copied!'
+        setTimeout(() => lbl.textContent = 'Copy', 2000)
+      })
+    }
+
+    /* ── BOOT ───────────────────────────────────────────────── */
+
+    init()
+
+  </script>
+</body>
+</html>
