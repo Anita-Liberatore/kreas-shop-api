@@ -183,25 +183,6 @@ pre,
   color: var(--k-accent-dark);
 }
 
-/* ── DISCOUNT CALLOUT ───────────────────────────────────────── */
-
-.discount-card {
-  background: linear-gradient(135deg, #1a1400, #221900);
-  border: 1px solid rgba(var(--k-accent-rgb), .25);
-  border-radius: 1rem;
-}
-
-.discount-badge {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  background-color: var(--k-accent);
-  color: var(--k-dark-900);
-  font-size: 1.3rem;
-  font-weight: 900;
-  flex-shrink: 0;
-}
-
 /* ── PHONE FRAME ────────────────────────────────────────────── */
 
 .phone-wrap { display: flex; justify-content: center; }

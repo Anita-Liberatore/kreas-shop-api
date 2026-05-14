@@ -156,13 +156,13 @@
   </div>
 
 
-  <!-- ══════════ SCHEMA + DISCOUNT ══════════ -->
+  <!-- ══════════ SCHEMA ══════════ -->
   <section class="py-5 bg-white">
     <div class="container">
       <div class="row g-5 align-items-start">
 
         <!-- Schema table -->
-        <div class="col-lg-7">
+        <div class="col-12">
           <span class="section-chip section-chip-light mb-2">
             <i class="bi bi-braces"></i> Schema
           </span>
@@ -221,76 +221,6 @@
           </div>
         </div>
 
-        <!-- Discount rule -->
-        <div class="col-lg-5">
-          <span class="section-chip section-chip-light mb-2">
-            <i class="bi bi-percent"></i> Business rule
-          </span>
-          <h2 class="fw-bold text-dark mb-4 mt-2">Discount logic</h2>
-
-          <!-- Callout card -->
-          <div class="discount-card p-4 mb-4">
-            <div class="d-flex align-items-center gap-3 mb-3">
-              <div class="discount-badge d-flex align-items-center justify-content-center flex-shrink-0">
-                10%
-              </div>
-              <div>
-                <h6 class="text-accent fw-bold mb-1">Cart discount</h6>
-                <p class="text-secondary mb-0" style="font-size:.88rem">
-                  When the customer adds <strong class="text-accent">more than 3 products</strong>
-                  to the cart, a <strong class="text-accent">10% discount</strong>
-                  is applied automatically to the total.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Code tabs for discount -->
-          <div class="code-block">
-            <ul class="nav nav-tabs" id="discountTabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#disc-js" type="button" role="tab">
-                  JavaScript
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#disc-vue" type="button" role="tab">
-                  Vue 3
-                </button>
-              </li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane fade show active" id="disc-js" role="tabpanel">
-<pre><span class="t-kw">const</span> total = cart.<span class="t-fn">reduce</span>(
-  (sum, item) => sum + item.price, <span class="t-num">0</span>
-)
-
-<span class="t-kw">const</span> discount = cart.length > <span class="t-num">3</span>
-  ? total * <span class="t-num">0.10</span>
-  : <span class="t-num">0</span>
-
-<span class="t-kw">const</span> finalTotal = total - discount</pre>
-              </div>
-              <div class="tab-pane fade" id="disc-vue" role="tabpanel">
-<pre><span class="t-cm">// computed properties</span>
-<span class="t-kw">const</span> total = <span class="t-fn">computed</span>(() =>
-  cart.value.<span class="t-fn">reduce</span>((s, i) => s + i.price, <span class="t-num">0</span>)
-)
-
-<span class="t-kw">const</span> discount = <span class="t-fn">computed</span>(() =>
-  cart.value.length > <span class="t-num">3</span>
-    ? total.value * <span class="t-num">0.10</span>
-    : <span class="t-num">0</span>
-)
-
-<span class="t-kw">const</span> finalTotal = <span class="t-fn">computed</span>(() =>
-  total.value - discount.value
-)</pre>
-              </div>
-            </div>
-          </div>
-
-        </div>
       </div><!-- /row -->
     </div><!-- /container -->
   </section>
