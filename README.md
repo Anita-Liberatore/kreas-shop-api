@@ -1,7 +1,7 @@
-# Kreas Shop API — Mock Product Catalog
+# Kreas Shop API — Mock Food Catalog
 
-Static JSON dataset for a Vue.js mobile-first e-commerce app.
-24 products across 4 categories — no backend, no authentication required.
+Static JSON dataset for a Vue.js mobile-first e-commerce app focused on Italian food products.
+24 products across 6 categories — no backend, no authentication required.
 
 ## Endpoint
 
@@ -24,11 +24,11 @@ const products = await res.json()
 ```json
 {
   "id": 1,
-  "name": "Sneakers Urban Pro",
-  "category": "Footwear",
-  "price": 89.99,
-  "description": "Sneakers urbane leggere con suola in gomma antiscivolo...",
-  "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80"
+  "name": "Pomodori Cuore di Bue",
+  "category": "Frutta & Verdura",
+  "price": 3.50,
+  "description": "Pomodori cuore di bue coltivati in pieno campo...",
+  "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600&q=80"
 }
 ```
 
@@ -36,7 +36,7 @@ const products = await res.json()
 |-------|------|-------------|
 | `id` | number | Unique identifier |
 | `name` | string | Product name |
-| `category` | string | `Footwear` · `Clothing` · `Accessories` · `Electronics` |
+| `category` | string | `Frutta & Verdura` · `Pane & Dolci` · `Latticini` · `Carne & Pesce` · `Bevande` · `Dispensa` |
 | `price` | number | Price in EUR |
 | `description` | string | Short product description |
 | `image` | string | Unsplash image URL (600px wide) |
@@ -84,27 +84,27 @@ Build a **mobile-first Vue.js app** with 3 views:
 
 | # | Name | Category | Price |
 |---|------|----------|-------|
-| 1 | Sneakers Urban Pro | Footwear | €89.99 |
-| 2 | Felpa Oversize Essential | Clothing | €54.99 |
-| 3 | Cuffia Bluetooth Studio | Electronics | €129.00 |
-| 4 | Zaino Explorer 30L | Accessories | €69.99 |
-| 5 | Smartwatch Fitness X1 | Electronics | €199.00 |
-| 6 | T-Shirt Essential Pack | Clothing | €34.99 |
-| 7 | Occhiali da Sole Retro | Accessories | €49.99 |
-| 8 | Giacca Softshell Trail | Clothing | €119.00 |
-| 9 | Portafoglio Slim Leather | Accessories | €39.99 |
-| 10 | Cap Logo Ricamato | Accessories | €24.99 |
-| 11 | Chelsea Boots in Pelle | Footwear | €149.00 |
-| 12 | Running Shoes Pace 2.0 | Footwear | €109.99 |
-| 13 | Jeans Slim Tapered | Clothing | €74.99 |
-| 14 | Borraccia Termica 500ml | Accessories | €29.99 |
-| 15 | Stivali da Trekking Alpine | Footwear | €179.00 |
-| 16 | Maglione Collo Alto | Clothing | €89.99 |
-| 17 | Camicia Oxford Button-Down | Clothing | €59.99 |
-| 18 | Blazer Strutturato | Clothing | €139.00 |
-| 19 | Cappotto Camel Oversize | Clothing | €219.00 |
-| 20 | Auricolari TWS Pro | Electronics | €89.99 |
-| 21 | Sandali Comfort Plus | Footwear | €49.99 |
-| 22 | Sciarpa Cashmere Blend | Accessories | €64.99 |
-| 23 | Slip-On Canvas | Footwear | €39.99 |
-| 24 | Speaker Portatile 360° | Electronics | €79.99 |
+| 1 | Pomodori Cuore di Bue | Frutta & Verdura | €3.50 |
+| 2 | Fragole Bio Campane | Frutta & Verdura | €4.99 |
+| 3 | Arance Tarocco Siciliane | Frutta & Verdura | €3.20 |
+| 4 | Insalata Mista Bio | Frutta & Verdura | €2.50 |
+| 5 | Pane di Altamura DOP | Pane & Dolci | €4.50 |
+| 6 | Croissant al Burro | Pane & Dolci | €1.80 |
+| 7 | Torta al Cioccolato Fondente | Pane & Dolci | €14.90 |
+| 8 | Biscotti di Prato | Pane & Dolci | €5.50 |
+| 9 | Mozzarella di Bufala DOP | Latticini | €4.20 |
+| 10 | Parmigiano Reggiano 24 mesi | Latticini | €9.90 |
+| 11 | Yogurt Greco Bio | Latticini | €2.80 |
+| 12 | Burro di Montagna | Latticini | €3.50 |
+| 13 | Bistecca di Fassona Piemontese | Carne & Pesce | €18.90 |
+| 14 | Salmone Norvegese Affumicato | Carne & Pesce | €12.50 |
+| 15 | Prosciutto di Parma DOP | Carne & Pesce | €13.90 |
+| 16 | Pollo Ruspante Allevato a Terra | Carne & Pesce | €9.90 |
+| 17 | Caffè Specialty Etiopia | Bevande | €12.90 |
+| 18 | Succo di Melagrana Biologico | Bevande | €5.50 |
+| 19 | Chianti Classico DOCG | Bevande | €16.90 |
+| 20 | Acqua Minerale Effervescente 6×1.5L | Bevande | €3.80 |
+| 21 | Pasta di Gragnano IGP | Dispensa | €3.20 |
+| 22 | Olio Extra Vergine di Oliva DOP | Dispensa | €13.90 |
+| 23 | Salsa di Pomodoro Artigianale | Dispensa | €3.50 |
+| 24 | Miele Millefiori di Acacia | Dispensa | €8.90 |

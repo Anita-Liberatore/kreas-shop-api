@@ -190,25 +190,25 @@
                   <td><code>name</code></td>
                   <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">string</span></td>
                   <td>Product name</td>
-                  <td class="font-mono text-secondary">"Sneakers Urban Pro"</td>
+                  <td class="font-mono text-secondary">"Pomodori Cuore di Bue"</td>
                 </tr>
                 <tr>
                   <td><code>category</code></td>
                   <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">string</span></td>
-                  <td>One of 4 categories</td>
-                  <td class="font-mono text-secondary">"Footwear"</td>
+                  <td>One of 6 categories</td>
+                  <td class="font-mono text-secondary">"Frutta &amp; Verdura"</td>
                 </tr>
                 <tr>
                   <td><code>price</code></td>
                   <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">number</span></td>
                   <td>Price in EUR</td>
-                  <td class="font-mono text-secondary">89.99</td>
+                  <td class="font-mono text-secondary">3.50</td>
                 </tr>
                 <tr>
                   <td><code>description</code></td>
                   <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">string</span></td>
                   <td>Short product description</td>
-                  <td class="font-mono text-secondary">"Sneakers urbane…"</td>
+                  <td class="font-mono text-secondary">"Pomodori cuore di bue…"</td>
                 </tr>
                 <tr>
                   <td><code>image</code></td>
@@ -591,10 +591,12 @@
 
     function renderCatalogTable() {
       const CATEGORY_COLORS = {
-        'Footwear':    'bg-primary-subtle text-primary-emphasis',
-        'Clothing':    'bg-success-subtle text-success-emphasis',
-        'Accessories': 'bg-warning-subtle text-warning-emphasis',
-        'Electronics': 'bg-info-subtle text-info-emphasis',
+        'Frutta & Verdura': 'bg-success-subtle text-success-emphasis',
+        'Pane & Dolci':     'bg-warning-subtle text-warning-emphasis',
+        'Latticini':        'bg-info-subtle text-info-emphasis',
+        'Carne & Pesce':    'bg-danger-subtle text-danger-emphasis',
+        'Bevande':          'bg-primary-subtle text-primary-emphasis',
+        'Dispensa':         'bg-secondary-subtle text-secondary-emphasis',
       }
 
       document.getElementById('catalog-table').innerHTML = allProducts.map(p => `
