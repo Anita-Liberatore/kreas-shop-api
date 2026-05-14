@@ -1,452 +1,412 @@
 /* ============================================================
-   STYLES — Kreas Shop API
-   Depends on css/variables.css being loaded first.
+   STYLE — Kreas Shop API
+   Bootstrap is the base — this file only extends or overrides
+   where Bootstrap utilities are not enough.
    ============================================================ */
 
 @import url('variables.css');
 
-/* ── BASE ──────────────────────────────────────────────────── */
-
-*, *::before, *::after { font-family: var(--font-sans); }
-code, pre, .mono       { font-family: var(--font-mono); }
+/* ── GLOBAL ─────────────────────────────────────────────────── */
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text-primary);
+  font-family: var(--k-font-sans);
+  background-color: var(--k-dark-900);
+  color: #f5f5f5;
 }
+
+code,
+pre,
+.font-mono {
+  font-family: var(--k-font-mono);
+}
+
+/* ── BRAND COLOUR UTILITIES ─────────────────────────────────── */
+
+.text-accent       { color: var(--k-accent) !important; }
+.bg-accent         { background-color: var(--k-accent) !important; }
+.border-accent     { border-color: var(--k-accent) !important; }
+.btn-accent {
+  background-color: var(--k-accent);
+  border-color:     var(--k-accent);
+  color: var(--k-dark-900);
+  font-weight: 700;
+}
+.btn-accent:hover {
+  background-color: var(--k-accent-dark);
+  border-color:     var(--k-accent-dark);
+  color: var(--k-dark-900);
+}
+
+/* ── DARK SURFACE UTILITIES ─────────────────────────────────── */
+
+.bg-dark-900 { background-color: var(--k-dark-900); }
+.bg-dark-800 { background-color: var(--k-dark-800); }
+.bg-dark-700 { background-color: var(--k-dark-700); }
+.border-dark { border-color: var(--k-dark-border) !important; }
+
+/* ── NAVBAR ─────────────────────────────────────────────────── */
+
+.navbar-brand span { color: var(--k-accent); }
 
 /* ── HERO ───────────────────────────────────────────────────── */
 
-.hero {
-  background: var(--color-bg);
-  padding: var(--space-24) 0 var(--space-20);
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid var(--color-border);
+.hero-section {
+  background-color: var(--k-dark-900);
+  border-bottom: 1px solid var(--k-dark-border);
+  /* subtle radial glow */
+  background-image:
+    radial-gradient(ellipse 60% 50% at 85% 30%, rgba(var(--k-accent-rgb),.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(var(--k-accent-rgb),.04) 0%, transparent 70%);
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(232,197,71,.08) 0%, transparent 65%);
-  top: -300px; right: -200px;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(232,197,71,.05) 0%, transparent 65%);
-  bottom: -150px; left: -100px;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.hero h1 {
-  font-size: var(--font-size-hero);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -.02em;
-}
-
-.hero h1 em {
-  font-style: normal;
-  color: var(--color-accent);
-}
-
-.hero p {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-lg);
-  max-width: 500px;
-  line-height: 1.7;
-}
-
-.badge-pill {
+.hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(232,197,71,.1);
-  border: 1px solid rgba(232,197,71,.25);
-  color: var(--color-accent);
+  gap: .4rem;
+  background: rgba(var(--k-accent-rgb), .08);
+  border: 1px solid rgba(var(--k-accent-rgb), .2);
+  color: var(--k-accent);
   font-size: .72rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
+  padding: .35rem .85rem;
+  border-radius: 999px;
 }
 
-/* Endpoint box */
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+}
+
+/* ── ENDPOINT BOX ───────────────────────────────────────────── */
+
 .endpoint-box {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 16px var(--space-5);
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  flex-wrap: wrap;
+  background-color: var(--k-dark-800);
+  border: 1px solid var(--k-dark-border);
+  border-radius: .75rem;
+  padding: .9rem 1.1rem;
 }
 
-.endpoint-box .method {
-  background: var(--color-accent);
-  color: var(--color-text-inverse);
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  flex-shrink: 0;
-}
-
-.endpoint-box .url {
-  color: var(--color-accent-muted);
-  font-size: var(--font-size-sm);
-  word-break: break-all;
-  flex: 1;
-}
-
-.btn-copy {
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
+.endpoint-url {
+  color: rgba(var(--k-accent-rgb), .8);
   font-size: .8rem;
-  padding: 6px 14px;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  white-space: nowrap;
+  word-break: break-all;
+  font-family: var(--k-font-mono);
 }
-
-.btn-copy:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
-/* ── STATS BAR ──────────────────────────────────────────────── */
-
-.stats-bar {
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  padding: 20px 0;
-}
-
-.stat-item { text-align: center; }
-.stat-item .num { font-size: 1.7rem; font-weight: 800; color: var(--color-accent); }
-.stat-item .lbl { font-size: var(--font-size-sm); color: var(--color-text-muted); font-weight: 500; margin-top: 2px; }
 
 /* ── CODE BLOCK ─────────────────────────────────────────────── */
 
 .code-block {
-  background: var(--color-code-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  background-color: var(--k-dark-900);
+  border: 1px solid var(--k-dark-border);
+  border-radius: .875rem;
   overflow: hidden;
 }
 
-.code-block .tab-bar {
-  display: flex;
-  gap: var(--space-1);
-  padding: 14px 16px 0;
-  border-bottom: 1px solid var(--color-border);
+.code-block .nav-tabs {
+  background-color: var(--k-dark-800);
+  border-bottom: 1px solid var(--k-dark-border);
+  padding: .5rem .75rem 0;
+  gap: .25rem;
 }
 
-.code-block .tab-btn {
-  background: none;
-  border: none;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
+.code-block .nav-tabs .nav-link {
+  color: rgba(255,255,255,.4);
+  font-size: .78rem;
   font-weight: 600;
-  padding: 6px 14px;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  cursor: pointer;
-  transition: all var(--transition-base);
+  border: none;
+  border-radius: .5rem .5rem 0 0;
+  padding: .35rem .85rem;
 }
 
-.code-block .tab-btn.active {
-  background: rgba(232,197,71,.1);
-  color: var(--color-accent);
+.code-block .nav-tabs .nav-link.active {
+  background-color: rgba(var(--k-accent-rgb), .12);
+  color: var(--k-accent);
+  border: none;
 }
 
 .code-block pre {
   margin: 0;
-  padding: var(--space-6);
-  font-size: var(--font-size-sm);
+  padding: 1.4rem;
+  font-size: .8rem;
   line-height: 1.8;
-  color: var(--color-code-text);
+  color: var(--k-code-text);
   overflow-x: auto;
 }
 
-.code-block pre .kw  { color: var(--color-code-kw); }
-.code-block pre .str { color: var(--color-code-str); }
-.code-block pre .fn  { color: var(--color-code-fn); }
-.code-block pre .cm  { color: var(--color-code-cm); font-style: italic; }
-.code-block pre .num { color: var(--color-code-num); }
+/* Syntax tokens */
+.t-kw  { color: var(--k-code-kw); }
+.t-str { color: var(--k-code-str); }
+.t-fn  { color: var(--k-code-fn); }
+.t-cm  { color: var(--k-code-cm); font-style: italic; }
+.t-num { color: var(--k-code-num); }
 
-/* ── SECTION LABELS ─────────────────────────────────────────── */
+/* ── STATS STRIP ────────────────────────────────────────────── */
+
+.stats-strip {
+  background-color: var(--k-dark-800);
+  border-top: 1px solid var(--k-dark-border);
+  border-bottom: 1px solid var(--k-dark-border);
+}
+
+.stat-num { font-size: 1.75rem; font-weight: 900; color: var(--k-accent); line-height: 1; }
+.stat-lbl { font-size: .75rem; color: rgba(255,255,255,.4); font-weight: 500; margin-top: .2rem; }
+
+/* ── SECTION CHIP ───────────────────────────────────────────── */
 
 .section-chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(232,197,71,.08);
-  border: 1px solid rgba(232,197,71,.2);
-  color: var(--color-accent);
-  font-size: .7rem;
+  gap: .35rem;
+  font-size: .68rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
+  padding: .3rem .8rem;
+  border-radius: 999px;
 }
 
-.section-title { font-size: var(--font-size-2xl); font-weight: 800; }
-.section-sub   { color: var(--color-text-secondary); font-size: var(--font-size-md); }
+/* dark variant */
+.section-chip-dark {
+  background: rgba(var(--k-accent-rgb), .08);
+  border: 1px solid rgba(var(--k-accent-rgb), .2);
+  color: var(--k-accent);
+}
 
-/* Light section override */
-.section-light .section-chip {
+/* light variant */
+.section-chip-light {
   background: #fef9e7;
-  border-color: #f5dfa0;
-  color: var(--color-accent-dark);
+  border: 1px solid #f5dfa0;
+  color: var(--k-accent-dark);
 }
-
-.section-light .section-title { color: var(--color-text-dark); }
-.section-light .section-sub   { color: #6b7280; }
-
-/* ── SCHEMA TABLE ───────────────────────────────────────────── */
-
-.schema-table { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-border-light); }
-.schema-table thead { background: #f3f4f6; }
-.schema-table thead th { font-size: var(--font-size-sm); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6b7280; border: none; padding: 12px 16px; }
-.schema-table tbody td { font-size: var(--font-size-base); padding: 12px 16px; border-color: var(--color-border-light); vertical-align: middle; color: var(--color-text-dark); }
-.schema-table tbody tr:hover { background: #fafafa; }
-.type-badge { font-family: var(--font-mono); font-size: .72rem; font-weight: 600; background: #fef9e7; color: var(--color-accent-dark); padding: 2px 8px; border-radius: var(--radius-sm); }
 
 /* ── DISCOUNT CALLOUT ───────────────────────────────────────── */
 
-.discount-box {
-  background: linear-gradient(135deg, #1a1400 0%, #221900 100%);
-  border: 1px solid rgba(232,197,71,.3);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
+.discount-card {
+  background: linear-gradient(135deg, #1a1400, #221900);
+  border: 1px solid rgba(var(--k-accent-rgb), .25);
+  border-radius: 1rem;
 }
 
-.discount-box h5 { color: var(--color-accent); font-weight: 800; }
-.discount-box p  { color: var(--color-text-secondary); font-size: var(--font-size-base); line-height: 1.7; margin: 0; }
-.discount-badge  {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-accent);
-  color: var(--color-text-inverse);
-  font-size: 1.4rem;
-  font-weight: 900;
-  width: 72px; height: 72px;
+.discount-badge {
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
+  background-color: var(--k-accent);
+  color: var(--k-dark-900);
+  font-size: 1.3rem;
+  font-weight: 900;
   flex-shrink: 0;
 }
 
-/* ── MOBILE PHONE PREVIEW ───────────────────────────────────── */
+/* ── PHONE FRAME ────────────────────────────────────────────── */
 
-.phone-wrap {
-  display: flex;
-  justify-content: center;
-}
+.phone-wrap { display: flex; justify-content: center; }
 
 .phone-frame {
-  width: 320px;
+  width: var(--k-phone-w);
   background: #1a1a1a;
   border-radius: 40px;
-  padding: 14px;
-  box-shadow: var(--shadow-phone),
-              inset 0 0 0 1px rgba(255,255,255,.08);
-  position: relative;
+  padding: 12px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.65), inset 0 0 0 1px rgba(255,255,255,.07);
 }
 
 .phone-notch {
-  width: 90px; height: 24px;
+  width: 80px;
+  height: 22px;
   background: #0d0d0d;
-  border-radius: var(--radius-full);
-  margin: 0 auto 10px;
+  border-radius: 999px;
+  margin: 0 auto 8px;
 }
 
 .phone-screen {
   background: #f0f2f5;
-  border-radius: 28px;
+  border-radius: 30px;
   overflow: hidden;
-  height: 580px;
+  height: 560px;
   display: flex;
   flex-direction: column;
+  position: relative; /* needed for .phone-detail absolute */
 }
 
+/* Phone top bar */
 .phone-topbar {
-  background: #0d0d0d;
-  padding: 12px 14px 10px;
+  background: var(--k-dark-900);
+  padding: .65rem .85rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
 }
 
-.phone-topbar .brand { color: var(--color-accent); font-weight: 800; font-size: .85rem; letter-spacing: .08em; }
-.phone-topbar .cart-btn { color: #fff; font-size: 1rem; position: relative; background: none; border: none; cursor: pointer; padding: 0; }
-.cart-count { position: absolute; top: -6px; right: -6px; background: var(--color-accent); color: #000; font-size: .55rem; font-weight: 800; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.phone-brand { color: var(--k-accent); font-weight: 900; font-size: .82rem; letter-spacing: .1em; }
 
+.phone-cart-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.phone-cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -6px;
+  background: var(--k-accent);
+  color: var(--k-dark-900);
+  font-size: .52rem;
+  font-weight: 900;
+  min-width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+/* Category pills row */
 .phone-filters {
   display: flex;
-  gap: 6px;
-  padding: 8px 10px;
+  gap: 5px;
+  padding: 6px 8px;
   overflow-x: auto;
   scrollbar-width: none;
   background: #fff;
   border-bottom: 1px solid #eee;
   flex-shrink: 0;
 }
-
 .phone-filters::-webkit-scrollbar { display: none; }
 
-.phone-filter-btn {
-  font-size: .62rem;
+.phone-pill {
+  font-size: .58rem;
   font-weight: 700;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
+  padding: 3px 9px;
+  border-radius: 999px;
   border: 1.5px solid #e5e7eb;
   background: #fff;
   color: #6b7280;
   white-space: nowrap;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all .15s;
 }
+.phone-pill.active { background: var(--k-dark-900); border-color: var(--k-dark-900); color: var(--k-accent); }
 
-.phone-filter-btn.active {
-  background: #0d0d0d;
-  border-color: #0d0d0d;
-  color: var(--color-accent);
-}
-
-.phone-product-grid {
+/* Product grid inside phone */
+.phone-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding: 10px;
+  gap: 7px;
+  padding: 8px;
   overflow-y: auto;
   flex: 1;
-  scrollbar-width: thin;
-  scrollbar-color: #ddd transparent;
 }
 
-.phone-product-card {
+.phone-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform var(--transition-fast);
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+  transition: transform .15s;
 }
-
-.phone-product-card:hover { transform: translateY(-2px); }
+.phone-card:hover { transform: translateY(-2px); }
 
 .phone-card-img {
-  height: 110px;
+  height: 100px;
   overflow: hidden;
   background: #f3f4f6;
   position: relative;
 }
+.phone-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.phone-card:hover .phone-card-img img { transform: scale(1.06); }
 
-.phone-card-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-slow);
-}
-
-.phone-product-card:hover .phone-card-img img { transform: scale(1.06); }
-
-.phone-cat-chip {
+.phone-cat-pill {
   position: absolute;
-  top: 6px; left: 6px;
-  background: rgba(255,255,255,.9);
-  font-size: .52rem;
+  top: 5px; left: 5px;
+  background: rgba(255,255,255,.92);
+  font-size: .5rem;
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
   color: #374151;
-  padding: 2px 6px;
-  border-radius: var(--radius-full);
+  padding: 2px 5px;
+  border-radius: 999px;
 }
 
-.phone-card-body { padding: 8px 8px 10px; }
-.phone-card-name { font-size: .72rem; font-weight: 700; line-height: 1.3; color: #111; margin-bottom: 4px; }
-.phone-card-price { font-size: .78rem; font-weight: 800; color: #111; }
-.phone-card-add {
+.phone-card-body { padding: 6px 7px 8px; }
+.phone-card-name { font-size: .68rem; font-weight: 700; color: #111; margin-bottom: 4px; line-height: 1.3; }
+.phone-card-price { font-size: .72rem; font-weight: 800; color: #111; }
+.phone-add-btn {
   float: right;
-  width: 22px; height: 22px;
-  background: #0d0d0d;
+  width: 20px; height: 20px;
+  background: var(--k-dark-900);
   border: none;
   border-radius: 50%;
-  color: var(--color-accent);
-  font-size: .75rem;
+  color: var(--k-accent);
+  font-size: .7rem;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
+  padding: 0;
 }
 
-/* ── PRODUCT DETAIL PREVIEW (modal inside phone) ── */
+/* ── PRODUCT DETAIL (slides in over phone screen) ─────────────── */
+
 .phone-detail {
   position: absolute;
   inset: 0;
   background: #fff;
-  border-radius: 28px;
+  border-radius: 30px;
   overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform .3s ease;
-  z-index: 10;
+  transform: translateX(105%);
+  transition: transform .28s ease;
+  z-index: 20;
 }
+.phone-detail.is-open { transform: translateX(0); }
 
-.phone-detail.open { transform: translateX(0); }
-
-.phone-detail-img {
-  height: 220px;
-  overflow: hidden;
-  background: #f3f4f6;
-}
-
+.phone-detail-img { height: 200px; overflow: hidden; background: #f3f4f6; }
 .phone-detail-img img { width: 100%; height: 100%; object-fit: cover; }
 
-.phone-detail-back {
+.phone-back-btn {
   position: absolute;
-  top: 14px; left: 14px;
-  background: rgba(255,255,255,.9);
+  top: 10px; left: 10px;
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,.88);
   backdrop-filter: blur(6px);
   border: none;
-  width: 34px; height: 34px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  font-size: .9rem;
+  font-size: .85rem;
   color: #111;
-  z-index: 11;
+  cursor: pointer;
+  z-index: 21;
 }
 
-.phone-detail-body { padding: 16px; }
-.phone-detail-cat  { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #9ca3af; }
-.phone-detail-name { font-size: 1.05rem; font-weight: 800; color: #111; margin: 4px 0 8px; }
-.phone-detail-price { font-size: 1.4rem; font-weight: 900; color: #111; }
-.phone-detail-desc { font-size: .78rem; color: #6b7280; line-height: 1.6; margin-top: 10px; }
-.phone-detail-btn {
+.phone-detail-body { padding: 14px; }
+.phone-detail-cat   { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #9ca3af; }
+.phone-detail-name  { font-size: 1rem; font-weight: 800; color: #111; margin: 3px 0 6px; line-height: 1.2; }
+.phone-detail-price { font-size: 1.35rem; font-weight: 900; color: #111; }
+.phone-detail-desc  { font-size: .74rem; color: #6b7280; line-height: 1.6; margin-top: 8px; }
+.phone-detail-cta {
   display: block;
   width: 100%;
-  margin-top: 16px;
-  background: #0d0d0d;
-  color: var(--color-accent);
+  margin-top: 14px;
+  background: var(--k-dark-900);
+  color: var(--k-accent);
   border: none;
-  border-radius: var(--radius-lg);
-  padding: 12px;
+  border-radius: .625rem;
+  padding: .7rem;
   font-weight: 700;
-  font-size: .85rem;
-  cursor: pointer;
+  font-size: .8rem;
   letter-spacing: .04em;
+  cursor: pointer;
 }
 
 /* ── SKELETON ───────────────────────────────────────────────── */
@@ -455,7 +415,15 @@ body {
   background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
-  border-radius: var(--radius-md);
+  border-radius: .5rem;
+}
+
+/* Light skeleton (used inside phone / white bg) */
+.skeleton-light {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: .5rem;
 }
 
 @keyframes shimmer {
@@ -463,28 +431,13 @@ body {
   100% { background-position: -200% 0; }
 }
 
-/* ── FOOTER ─────────────────────────────────────────────────── */
-
-footer {
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
-  padding: var(--space-8) 0;
-}
-
-footer strong { color: var(--color-text-primary); }
-footer a { color: var(--color-accent); text-decoration: none; }
-footer a:hover { color: var(--color-accent-muted); }
-
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 
 @media (max-width: 991px) {
-  .phone-wrap { margin-top: var(--space-10); }
+  .phone-wrap { margin-top: 2.5rem; }
 }
 
-@media (max-width: 576px) {
-  .hero { padding: 60px 0 50px; }
-  .phone-frame { width: 290px; }
-  .phone-screen { height: 520px; }
+@media (max-width: 575px) {
+  :root { --k-phone-w: 280px; }
+  .phone-screen { height: 510px; }
 }

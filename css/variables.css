@@ -1,88 +1,32 @@
 /* ============================================================
    DESIGN TOKENS — Kreas Shop API
+   Only values Bootstrap cannot express natively.
    ============================================================ */
 
 :root {
+  /* ── Brand ── */
+  --k-accent:       #e8c547;
+  --k-accent-dark:  #c9a227;
+  --k-accent-rgb:   232, 197, 71;
 
-  /* ── Brand — dark premium + gold ── */
-  --color-accent:        #e8c547;
-  --color-accent-dark:   #c9a227;
-  --color-accent-light:  #fef9e7;
-  --color-accent-muted:  #f5dfa0;
-
-  /* ── Dark surfaces ── */
-  --color-bg:            #0d0d0d;
-  --color-surface:       #161616;
-  --color-surface-2:     #1f1f1f;
-  --color-surface-3:     #2a2a2a;
-
-  /* ── Light surfaces (schema section) ── */
-  --color-light-bg:      #fafafa;
-  --color-light-surface: #ffffff;
-  --color-border:        #2e2e2e;
-  --color-border-light:  #e5e7eb;
-
-  /* ── Text ── */
-  --color-text-primary:  #f5f5f5;
-  --color-text-secondary:#a0a0a0;
-  --color-text-muted:    #606060;
-  --color-text-dark:     #111827;
-  --color-text-inverse:  #0d0d0d;
-
-  /* ── Semantic ── */
-  --color-success:  #22c55e;
-  --color-danger:   #ef4444;
-  --color-warning:  #f59e0b;
-
-  /* ── Code block ── */
-  --color-code-bg:   #0d0d0d;
-  --color-code-text: #e5e7eb;
-  --color-code-kw:   #e8c547;
-  --color-code-str:  #86efac;
-  --color-code-fn:   #67e8f9;
-  --color-code-cm:   #4b5563;
-  --color-code-num:  #f472b6;
+  /* ── Dark surfaces (hero + code) ── */
+  --k-dark-900: #0d0d0d;
+  --k-dark-800: #161616;
+  --k-dark-700: #1f1f1f;
+  --k-dark-border: rgba(255,255,255,.08);
 
   /* ── Typography ── */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --k-font-sans: 'Inter', system-ui, sans-serif;
+  --k-font-mono: 'JetBrains Mono', monospace;
 
-  --font-size-xs:   .68rem;
-  --font-size-sm:   .78rem;
-  --font-size-base: .92rem;
-  --font-size-md:   1rem;
-  --font-size-lg:   1.1rem;
-  --font-size-xl:   1.5rem;
-  --font-size-2xl:  1.9rem;
-  --font-size-hero: clamp(2.2rem, 5vw, 4rem);
+  /* ── Code token colours ── */
+  --k-code-text: #e5e7eb;
+  --k-code-kw:   #e8c547;
+  --k-code-str:  #86efac;
+  --k-code-fn:   #67e8f9;
+  --k-code-cm:   #6b7280;
+  --k-code-num:  #f472b6;
 
-  /* ── Spacing ── */
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  20px;
-  --space-6:  24px;
-  --space-8:  32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-20: 80px;
-  --space-24: 96px;
-
-  /* ── Border radius ── */
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-2xl:  20px;
-  --radius-full: 999px;
-
-  /* ── Shadows ── */
-  --shadow-card:  0 8px 32px rgba(0,0,0,.4);
-  --shadow-phone: 0 40px 80px rgba(0,0,0,.6);
-
-  /* ── Transitions ── */
-  --transition-fast: .15s ease;
-  --transition-base: .2s ease;
-  --transition-slow: .4s ease;
+  /* ── Phone frame ── */
+  --k-phone-w: 300px;
 }

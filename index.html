@@ -5,161 +5,216 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kreas Shop API</title>
 
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Custom -->
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="navbar navbar-dark bg-dark-900 border-bottom border-dark sticky-top">
+    <div class="container">
+      <span class="navbar-brand fw-black mb-0">
+        KREAS <span>SHOP API</span>
+      </span>
+      <div class="d-flex align-items-center gap-3">
+        <a href="https://github.com/Anita-Liberatore/kreas-shop-api"
+           target="_blank"
+           class="text-accent text-decoration-none d-flex align-items-center gap-1"
+           style="font-size:.85rem;font-weight:600">
+          <i class="bi bi-github"></i>
+          <span class="d-none d-sm-inline">GitHub</span>
+        </a>
+        <a href="https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json"
+           target="_blank"
+           class="btn btn-accent btn-sm rounded-pill px-3">
+          <i class="bi bi-filetype-json me-1"></i>Raw JSON
+        </a>
+      </div>
+    </div>
+  </nav>
+
+
   <!-- ══════════ HERO ══════════ -->
-  <section class="hero">
-    <div class="container position-relative" style="z-index:1">
+  <section class="hero-section py-5 py-lg-6">
+    <div class="container py-lg-4">
       <div class="row align-items-center g-5">
 
+        <!-- Copy -->
         <div class="col-lg-6">
-          <span class="badge-pill mb-4 d-inline-flex">
+          <span class="hero-eyebrow mb-3 d-inline-flex">
             <i class="bi bi-bag-fill"></i> Mobile E-commerce · Free · No Auth
           </span>
-          <h1 class="mb-3">Kreas<br><em>Shop API</em></h1>
-          <p class="mb-5">Ready-to-use product catalog for your Vue.js mobile e-commerce. 24 products across 4 categories — fetch and build.</p>
 
-          <div class="endpoint-box">
-            <span class="method">GET</span>
-            <span class="url mono" id="endpoint-url">https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json</span>
-            <button class="btn-copy" onclick="copyEndpoint()">
+          <h1 class="hero-title text-white mb-3">
+            Kreas<br>
+            <span class="text-accent">Shop API</span>
+          </h1>
+
+          <p class="text-secondary fs-5 mb-5" style="max-width:480px">
+            Ready-to-use product catalog for your Vue.js mobile e-commerce.
+            24 products, 4 categories — fetch and build.
+          </p>
+
+          <!-- Endpoint -->
+          <div class="endpoint-box d-flex flex-wrap align-items-center gap-2">
+            <span class="badge bg-accent text-dark fw-bold" style="font-size:.7rem;letter-spacing:.08em">GET</span>
+            <span class="endpoint-url flex-grow-1" id="endpoint-url">
+              https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json
+            </span>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="copyEndpoint()">
               <i class="bi bi-clipboard me-1"></i><span id="copy-label">Copy</span>
             </button>
           </div>
         </div>
 
-        <!-- Mobile phone preview -->
+        <!-- Phone preview -->
         <div class="col-lg-6">
           <div class="phone-wrap">
             <div class="phone-frame">
               <div class="phone-notch"></div>
+
               <div class="phone-screen" id="phone-screen">
 
                 <!-- Top bar -->
                 <div class="phone-topbar">
-                  <span class="brand">KREAS</span>
-                  <button class="cart-btn" onclick="openCartPreview()">
+                  <span class="phone-brand">KREAS</span>
+                  <button class="phone-cart-btn" onclick="openCartPreview()" aria-label="Open cart">
                     <i class="bi bi-bag"></i>
-                    <span class="cart-count" id="phone-cart-count">0</span>
+                    <span class="phone-cart-badge" id="cart-count">0</span>
                   </button>
                 </div>
 
-                <!-- Category filters -->
+                <!-- Category pills -->
                 <div class="phone-filters" id="phone-filters">
-                  <button class="phone-filter-btn active" onclick="phoneFilter(this,'All')">All</button>
+                  <button class="phone-pill active" onclick="setPhoneFilter(this,'All')">All</button>
                 </div>
 
                 <!-- Product grid -->
-                <div class="phone-product-grid" id="phone-grid">
+                <div class="phone-grid" id="phone-grid">
                   <!-- JS rendered -->
                 </div>
 
-                <!-- Detail slide -->
+                <!-- Detail panel (slides in) -->
                 <div class="phone-detail" id="phone-detail">
-                  <button class="phone-detail-back" onclick="closeDetail()">
+                  <button class="phone-back-btn" onclick="closeDetail()" aria-label="Back">
                     <i class="bi bi-chevron-left"></i>
                   </button>
                   <div class="phone-detail-img">
                     <img id="detail-img" src="" alt="" />
                   </div>
                   <div class="phone-detail-body">
-                    <div class="phone-detail-cat" id="detail-cat"></div>
-                    <div class="phone-detail-name" id="detail-name"></div>
-                    <div class="phone-detail-price" id="detail-price"></div>
-                    <div class="phone-detail-desc" id="detail-desc"></div>
-                    <button class="phone-detail-btn" onclick="addToCartFromDetail()">
-                      <i class="bi bi-bag-plus me-2"></i>Add to cart
+                    <p class="phone-detail-cat mb-0" id="detail-cat"></p>
+                    <h2 class="phone-detail-name" id="detail-name"></h2>
+                    <p class="phone-detail-price" id="detail-price"></p>
+                    <p class="phone-detail-desc" id="detail-desc"></p>
+                    <button class="phone-detail-cta" onclick="addFromDetail()">
+                      <i class="bi bi-bag-plus me-1"></i> Add to cart
                     </button>
                   </div>
                 </div>
 
-              </div>
-            </div>
-          </div>
+              </div><!-- /phone-screen -->
+            </div><!-- /phone-frame -->
+          </div><!-- /phone-wrap -->
         </div>
 
-      </div>
-    </div>
+      </div><!-- /row -->
+    </div><!-- /container -->
   </section>
 
+
   <!-- ══════════ STATS ══════════ -->
-  <div class="stats-bar">
+  <div class="stats-strip py-4">
     <div class="container">
       <div class="row g-3 text-center">
         <div class="col-6 col-md-3">
-          <div class="stat-item"><div class="num">24</div><div class="lbl">Products</div></div>
+          <div class="stat-num">24</div>
+          <div class="stat-lbl">Products</div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="stat-item"><div class="num">4</div><div class="lbl">Categories</div></div>
+          <div class="stat-num">4</div>
+          <div class="stat-lbl">Categories</div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="stat-item"><div class="num">5</div><div class="lbl">Fields per item</div></div>
+          <div class="stat-num">6</div>
+          <div class="stat-lbl">Fields per item</div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="stat-item"><div class="num">0</div><div class="lbl">Auth required</div></div>
+          <div class="stat-num">0</div>
+          <div class="stat-lbl">Auth required</div>
         </div>
       </div>
     </div>
   </div>
 
+
   <!-- ══════════ SCHEMA + DISCOUNT ══════════ -->
-  <section class="py-5 section-light" style="background:#fff">
+  <section class="py-5 bg-white">
     <div class="container">
       <div class="row g-5 align-items-start">
 
-        <!-- Schema -->
+        <!-- Schema table -->
         <div class="col-lg-7">
-          <span class="section-chip mb-2"><i class="bi bi-braces"></i> Schema</span>
-          <h2 class="section-title mb-1" style="color:#111">Product object</h2>
-          <p class="section-sub mb-4" style="color:#6b7280">Every item in the array exposes these 5 fields.</p>
+          <span class="section-chip section-chip-light mb-2">
+            <i class="bi bi-braces"></i> Schema
+          </span>
+          <h2 class="fw-bold text-dark mb-1 mt-2">Product object</h2>
+          <p class="text-secondary mb-4">Every item in the array exposes these 6 fields.</p>
 
           <div class="table-responsive">
-            <table class="table schema-table mb-0">
-              <thead>
-                <tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr>
+            <table class="table table-bordered table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Field</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Example</th>
+                </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><code>id</code></td>
-                  <td><span class="type-badge">number</span></td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">number</span></td>
                   <td>Unique identifier</td>
-                  <td class="mono" style="color:#6b7280">1</td>
+                  <td class="font-mono text-secondary">1</td>
                 </tr>
                 <tr>
                   <td><code>name</code></td>
-                  <td><span class="type-badge">string</span></td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">string</span></td>
                   <td>Product name</td>
-                  <td class="mono" style="color:#6b7280">"Sneakers Urban Pro"</td>
+                  <td class="font-mono text-secondary">"Sneakers Urban Pro"</td>
                 </tr>
                 <tr>
                   <td><code>category</code></td>
-                  <td><span class="type-badge">string</span></td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">string</span></td>
                   <td>One of 4 categories</td>
-                  <td class="mono" style="color:#6b7280">"Footwear"</td>
+                  <td class="font-mono text-secondary">"Footwear"</td>
                 </tr>
                 <tr>
                   <td><code>price</code></td>
-                  <td><span class="type-badge">number</span></td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">number</span></td>
                   <td>Price in EUR</td>
-                  <td class="mono" style="color:#6b7280">89.99</td>
+                  <td class="font-mono text-secondary">89.99</td>
                 </tr>
                 <tr>
                   <td><code>description</code></td>
-                  <td><span class="type-badge">string</span></td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">string</span></td>
                   <td>Short product description</td>
-                  <td class="mono" style="color:#6b7280">"Sneakers urbane..."</td>
+                  <td class="font-mono text-secondary">"Sneakers urbane…"</td>
                 </tr>
                 <tr>
                   <td><code>image</code></td>
-                  <td><span class="type-badge">string</span></td>
-                  <td>Unsplash image URL (600px)</td>
-                  <td class="mono" style="color:#6b7280">"https://images.unsplash..."</td>
+                  <td><span class="badge bg-warning-subtle text-warning-emphasis fw-semibold font-mono">string</span></td>
+                  <td>Unsplash image URL (600 px)</td>
+                  <td class="font-mono text-secondary">"https://images.unsplash…"</td>
                 </tr>
               </tbody>
             </table>
@@ -168,202 +223,277 @@
 
         <!-- Discount rule -->
         <div class="col-lg-5">
-          <span class="section-chip mb-2"><i class="bi bi-percent"></i> Business rule</span>
-          <h2 class="section-title mb-4" style="color:#111">Discount logic</h2>
+          <span class="section-chip section-chip-light mb-2">
+            <i class="bi bi-percent"></i> Business rule
+          </span>
+          <h2 class="fw-bold text-dark mb-4 mt-2">Discount logic</h2>
 
-          <div class="discount-box mb-4">
-            <div class="d-flex align-items-center gap-4 mb-3">
-              <div class="discount-badge">10%</div>
+          <!-- Callout card -->
+          <div class="discount-card p-4 mb-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="discount-badge d-flex align-items-center justify-content-center flex-shrink-0">
+                10%
+              </div>
               <div>
-                <h5 class="mb-1">Cart discount</h5>
-                <p>When the customer adds <strong style="color:#e8c547">more than 3 products</strong> to the cart, a <strong style="color:#e8c547">10% discount</strong> is automatically applied to the total.</p>
+                <h6 class="text-accent fw-bold mb-1">Cart discount</h6>
+                <p class="text-secondary mb-0" style="font-size:.88rem">
+                  When the customer adds <strong class="text-accent">more than 3 products</strong>
+                  to the cart, a <strong class="text-accent">10% discount</strong>
+                  is applied automatically to the total.
+                </p>
               </div>
             </div>
           </div>
 
+          <!-- Code tabs for discount -->
           <div class="code-block">
-            <div class="tab-bar">
-              <button class="tab-btn active" onclick="switchDiscount(this,'disc-js')">JavaScript</button>
-              <button class="tab-btn" onclick="switchDiscount(this,'disc-vue')">Vue 3</button>
-            </div>
-            <div id="disc-js">
-<pre><span class="kw">const</span> total = cart.<span class="fn">reduce</span>(
-  (sum, item) => sum + item.price, <span class="num">0</span>
+            <ul class="nav nav-tabs" id="discountTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#disc-js" type="button" role="tab">
+                  JavaScript
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#disc-vue" type="button" role="tab">
+                  Vue 3
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="disc-js" role="tabpanel">
+<pre><span class="t-kw">const</span> total = cart.<span class="t-fn">reduce</span>(
+  (sum, item) => sum + item.price, <span class="t-num">0</span>
 )
 
-<span class="kw">const</span> discount = cart.length > <span class="num">3</span>
-  ? total * <span class="num">0.10</span>
-  : <span class="num">0</span>
+<span class="t-kw">const</span> discount = cart.length > <span class="t-num">3</span>
+  ? total * <span class="t-num">0.10</span>
+  : <span class="t-num">0</span>
 
-<span class="kw">const</span> finalTotal = total - discount</pre>
-            </div>
-            <div id="disc-vue" style="display:none">
-<pre><span class="cm">// computed properties</span>
-<span class="kw">const</span> total = <span class="fn">computed</span>(() =>
-  cart.value.<span class="fn">reduce</span>((s, i) => s + i.price, <span class="num">0</span>)
+<span class="t-kw">const</span> finalTotal = total - discount</pre>
+              </div>
+              <div class="tab-pane fade" id="disc-vue" role="tabpanel">
+<pre><span class="t-cm">// computed properties</span>
+<span class="t-kw">const</span> total = <span class="t-fn">computed</span>(() =>
+  cart.value.<span class="t-fn">reduce</span>((s, i) => s + i.price, <span class="t-num">0</span>)
 )
 
-<span class="kw">const</span> discount = <span class="fn">computed</span>(() =>
-  cart.value.length > <span class="num">3</span> ? total.value * <span class="num">0.10</span> : <span class="num">0</span>
+<span class="t-kw">const</span> discount = <span class="t-fn">computed</span>(() =>
+  cart.value.length > <span class="t-num">3</span>
+    ? total.value * <span class="t-num">0.10</span>
+    : <span class="t-num">0</span>
 )
 
-<span class="kw">const</span> finalTotal = <span class="fn">computed</span>(() =>
+<span class="t-kw">const</span> finalTotal = <span class="t-fn">computed</span>(() =>
   total.value - discount.value
 )</pre>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </div>
+        </div>
+      </div><!-- /row -->
+    </div><!-- /container -->
   </section>
 
-  <!-- ══════════ CODE EXAMPLES ══════════ -->
-  <section class="py-5" style="background:var(--color-surface)">
+
+  <!-- ══════════ FETCH EXAMPLES ══════════ -->
+  <section class="py-5 bg-dark-800">
     <div class="container">
       <div class="row align-items-center g-5">
-        <div class="col-lg-5">
-          <span class="section-chip mb-2"><i class="bi bi-code-slash"></i> Integration</span>
-          <h2 class="section-title mb-2">Fetch the data</h2>
-          <p class="section-sub mb-0">Drop this into your Vue.js component and start building.</p>
-        </div>
-        <div class="col-lg-7">
-          <div class="code-block">
-            <div class="tab-bar">
-              <button class="tab-btn active" onclick="switchTab(this,'tab-js')">JavaScript</button>
-              <button class="tab-btn" onclick="switchTab(this,'tab-vue')">Vue 3</button>
-              <button class="tab-btn" onclick="switchTab(this,'tab-axios')">Axios</button>
-            </div>
 
-            <div id="tab-js">
-<pre><span class="kw">const</span> API = <span class="str">'https://raw.githubusercontent.com/
+        <div class="col-lg-4">
+          <span class="section-chip section-chip-dark mb-2">
+            <i class="bi bi-code-slash"></i> Integration
+          </span>
+          <h2 class="text-white fw-bold mt-2 mb-2">Fetch the data</h2>
+          <p class="text-secondary mb-0">
+            Drop this into your Vue.js component and start building.
+            Works from any HTTP client — no CORS issues.
+          </p>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="code-block">
+            <ul class="nav nav-tabs" id="fetchTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-js" type="button" role="tab">
+                  JavaScript
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-vue" type="button" role="tab">
+                  Vue 3
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-axios" type="button" role="tab">
+                  Axios
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content">
+
+              <div class="tab-pane fade show active" id="tab-js" role="tabpanel">
+<pre><span class="t-kw">const</span> API = <span class="t-str">'https://raw.githubusercontent.com/
   Anita-Liberatore/kreas-shop-api/master/products.json'</span>
 
-<span class="kw">const</span> <span class="fn">getProducts</span> = <span class="kw">async</span> () => {
-  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(API)
-  <span class="kw">return</span> res.<span class="fn">json</span>() <span class="cm">// Array of 24 products</span>
+<span class="t-kw">const</span> <span class="t-fn">getProducts</span> = <span class="t-kw">async</span> () => {
+  <span class="t-kw">const</span> res = <span class="t-kw">await</span> <span class="t-fn">fetch</span>(API)
+  <span class="t-kw">return</span> res.<span class="t-fn">json</span>() <span class="t-cm">// Array of 24 products</span>
 }</pre>
-            </div>
+              </div>
 
-            <div id="tab-vue" style="display:none">
-<pre><span class="cm">// Vue 3 — Composition API</span>
-<span class="kw">import</span> { ref, onMounted } <span class="kw">from</span> <span class="str">'vue'</span>
+              <div class="tab-pane fade" id="tab-vue" role="tabpanel">
+<pre><span class="t-cm">// Vue 3 — Composition API</span>
+<span class="t-kw">import</span> { ref, onMounted } <span class="t-kw">from</span> <span class="t-str">'vue'</span>
 
-<span class="kw">const</span> products = <span class="fn">ref</span>([])
+<span class="t-kw">const</span> products = <span class="t-fn">ref</span>([])
 
-<span class="fn">onMounted</span>(<span class="kw">async</span> () => {
-  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'https://raw.githubusercontent.com/
-    Anita-Liberatore/kreas-shop-api/master/products.json'</span>)
-  products.value = <span class="kw">await</span> res.<span class="fn">json</span>()
+<span class="t-fn">onMounted</span>(<span class="t-kw">async</span> () => {
+  <span class="t-kw">const</span> res = <span class="t-kw">await</span> <span class="t-fn">fetch</span>(
+    <span class="t-str">'https://raw.githubusercontent.com/
+    Anita-Liberatore/kreas-shop-api/master/products.json'</span>
+  )
+  products.value = <span class="t-kw">await</span> res.<span class="t-fn">json</span>()
 })</pre>
-            </div>
+              </div>
 
-            <div id="tab-axios" style="display:none">
-<pre><span class="cm">// Axios</span>
-<span class="kw">import</span> axios <span class="kw">from</span> <span class="str">'axios'</span>
+              <div class="tab-pane fade" id="tab-axios" role="tabpanel">
+<pre><span class="t-cm">// Axios</span>
+<span class="t-kw">import</span> axios <span class="t-kw">from</span> <span class="t-str">'axios'</span>
 
-<span class="kw">const</span> { data: products } = <span class="kw">await</span> axios.<span class="fn">get</span>(
-  <span class="str">'https://raw.githubusercontent.com/
+<span class="t-kw">const</span> { data: products } = <span class="t-kw">await</span> axios.<span class="t-fn">get</span>(
+  <span class="t-str">'https://raw.githubusercontent.com/
   Anita-Liberatore/kreas-shop-api/master/products.json'</span>
 )
-<span class="cm">// products → Array of 24 items</span></pre>
+<span class="t-cm">// products → Array of 24 items</span></pre>
+              </div>
+
             </div>
           </div>
         </div>
+
+      </div><!-- /row -->
+    </div><!-- /container -->
+  </section>
+
+
+  <!-- ══════════ PRODUCT TABLE ══════════ -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <span class="section-chip section-chip-light mb-2">
+        <i class="bi bi-grid-3x3-gap"></i> Catalog
+      </span>
+      <h2 class="fw-bold text-dark mt-2 mb-1">All 24 products</h2>
+      <p class="text-secondary mb-4">Complete list of items available in the dataset.</p>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody id="catalog-table">
+            <!-- JS rendered -->
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
+
   <!-- ══════════ FOOTER ══════════ -->
-  <footer>
+  <footer class="bg-dark-900 border-top border-dark py-4">
     <div class="container">
       <div class="row align-items-center g-3">
-        <div class="col-md-6">
-          <strong>Kreas Shop API</strong> &mdash; Mock product catalog for mobile e-commerce exercises.
+        <div class="col-md-6 text-secondary" style="font-size:.85rem">
+          <strong class="text-white">Kreas Shop API</strong> &mdash;
+          Mock product catalog for mobile e-commerce exercises.
         </div>
-        <div class="col-md-6 text-md-end">
-          <a href="https://github.com/Anita-Liberatore/kreas-shop-api" target="_blank">
-            <i class="bi bi-github me-1"></i> View on GitHub
+        <div class="col-md-6 text-md-end d-flex flex-wrap gap-3 justify-content-md-end" style="font-size:.85rem">
+          <a href="https://github.com/Anita-Liberatore/kreas-shop-api" target="_blank" class="text-accent text-decoration-none">
+            <i class="bi bi-github me-1"></i>GitHub
           </a>
-          <span class="mx-2" style="color:var(--color-border)">·</span>
-          <a href="https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json" target="_blank">
-            <i class="bi bi-filetype-json me-1"></i> Raw JSON
+          <a href="https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json" target="_blank" class="text-accent text-decoration-none">
+            <i class="bi bi-filetype-json me-1"></i>Raw JSON
           </a>
         </div>
       </div>
     </div>
   </footer>
 
+
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
 
     /* ── CONFIG ─────────────────────────────────────────────── */
 
     const API_URL = 'https://raw.githubusercontent.com/Anita-Liberatore/kreas-shop-api/master/products.json'
 
-    const CATEGORY_ICONS = {
-      'Footwear':    'bi-boot',
-      'Clothing':    'bi-bag',
-      'Accessories': 'bi-gem',
-      'Electronics': 'bi-cpu',
-    }
-
     /* ── STATE ──────────────────────────────────────────────── */
 
-    let allProducts    = []
-    let phoneFilter_   = 'All'
-    let cart           = []
-    let detailProduct  = null
+    let allProducts   = []
+    let activeFilter  = 'All'
+    let cart          = []
+    let detailProduct = null
 
-    /* ── INIT ───────────────────────────────────────────────── */
+    /* ── BOOT ───────────────────────────────────────────────── */
 
     async function init() {
-      renderPhoneSkeletons()
+      renderSkeletons()
       try {
-        const res  = await fetch(API_URL)
+        const res = await fetch(API_URL)
         allProducts = await res.json()
-        buildPhoneFilters()
+        buildFilters()
         renderPhoneGrid()
+        renderCatalogTable()
       } catch {
         document.getElementById('phone-grid').innerHTML =
-          `<div style="grid-column:1/-1;text-align:center;padding:24px;color:#9ca3af;font-size:.75rem">
-            <i class="bi bi-exclamation-triangle d-block mb-2" style="font-size:1.5rem"></i>
+          `<div class="d-flex flex-column align-items-center justify-content-center py-4 text-secondary"
+                style="grid-column:1/-1;font-size:.75rem">
+            <i class="bi bi-exclamation-triangle fs-4 mb-2"></i>
             Could not load products.
           </div>`
       }
     }
 
-    /* ── PHONE SKELETONS ────────────────────────────────────── */
+    /* ── SKELETONS ──────────────────────────────────────────── */
 
-    function renderPhoneSkeletons() {
+    function renderSkeletons() {
       document.getElementById('phone-grid').innerHTML =
-        Array.from({length: 6}).map(() => `
-          <div style="background:#fff;border-radius:12px;overflow:hidden">
-            <div class="skeleton" style="height:110px;border-radius:0"></div>
-            <div style="padding:8px">
-              <div class="skeleton mb-1" style="height:10px;width:80%"></div>
-              <div class="skeleton" style="height:10px;width:50%"></div>
+        Array.from({ length: 6 }).map(() => `
+          <div style="background:#fff;border-radius:10px;overflow:hidden">
+            <div class="skeleton-light" style="height:100px;border-radius:0"></div>
+            <div class="p-2">
+              <div class="skeleton-light mb-1" style="height:9px;width:75%"></div>
+              <div class="skeleton-light" style="height:9px;width:45%"></div>
             </div>
           </div>`).join('')
     }
 
-    /* ── PHONE FILTERS ──────────────────────────────────────── */
+    /* ── FILTERS ────────────────────────────────────────────── */
 
-    function buildPhoneFilters() {
+    function buildFilters() {
       const cats = [...new Set(allProducts.map(p => p.category))].sort()
       const bar  = document.getElementById('phone-filters')
       cats.forEach(cat => {
         const btn = document.createElement('button')
-        btn.className = 'phone-filter-btn'
-        btn.textContent = cat
-        btn.onclick = () => phoneFilter(btn, cat)
+        btn.className    = 'phone-pill'
+        btn.textContent  = cat
+        btn.onclick      = () => setPhoneFilter(btn, cat)
         bar.appendChild(btn)
       })
     }
 
-    function phoneFilter(el, cat) {
-      phoneFilter_ = cat
-      document.querySelectorAll('.phone-filter-btn').forEach(b => b.classList.remove('active'))
+    function setPhoneFilter(el, cat) {
+      activeFilter = cat
+      document.querySelectorAll('.phone-pill').forEach(b => b.classList.remove('active'))
       el.classList.add('active')
       renderPhoneGrid()
     }
@@ -371,22 +501,24 @@
     /* ── PHONE GRID ─────────────────────────────────────────── */
 
     function renderPhoneGrid() {
-      const list = phoneFilter_ === 'All'
+      const list = activeFilter === 'All'
         ? allProducts
-        : allProducts.filter(p => p.category === phoneFilter_)
+        : allProducts.filter(p => p.category === activeFilter)
 
       document.getElementById('phone-grid').innerHTML = list.slice(0, 12).map(p => `
-        <div class="phone-product-card" onclick="openDetail(${p.id})">
+        <div class="phone-card" onclick="openDetail(${p.id})">
           <div class="phone-card-img">
             <img src="${p.image}" alt="${p.name}" loading="lazy"
-                 onerror="this.src='https://placehold.co/300x220/1f1f1f/e8c547?text=${encodeURIComponent(p.name[0])}'" />
-            <span class="phone-cat-chip">${p.category}</span>
+                 onerror="this.src='https://placehold.co/300x200/1f1f1f/e8c547?text=${encodeURIComponent(p.name[0])}'" />
+            <span class="phone-cat-pill">${p.category}</span>
           </div>
           <div class="phone-card-body">
             <div class="phone-card-name">${p.name}</div>
             <div class="d-flex align-items-center justify-content-between">
               <span class="phone-card-price">€${p.price.toFixed(2)}</span>
-              <button class="phone-card-add" onclick="event.stopPropagation();addToCart(${p.id})">
+              <button class="phone-add-btn"
+                      onclick="event.stopPropagation(); quickAdd(${p.id})"
+                      aria-label="Add to cart">
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -400,64 +532,82 @@
       const p = allProducts.find(x => x.id === id)
       if (!p) return
       detailProduct = p
-      document.getElementById('detail-img').src   = p.image
-      document.getElementById('detail-cat').textContent   = p.category
-      document.getElementById('detail-name').textContent  = p.name
-      document.getElementById('detail-price').textContent = `€${p.price.toFixed(2)}`
-      document.getElementById('detail-desc').textContent  = p.description
-      document.getElementById('phone-detail').classList.add('open')
+
+      document.getElementById('detail-img').src            = p.image
+      document.getElementById('detail-img').alt            = p.name
+      document.getElementById('detail-cat').textContent    = p.category
+      document.getElementById('detail-name').textContent   = p.name
+      document.getElementById('detail-price').textContent  = `€${p.price.toFixed(2)}`
+      document.getElementById('detail-desc').textContent   = p.description
+
+      document.getElementById('phone-detail').classList.add('is-open')
     }
 
     function closeDetail() {
-      document.getElementById('phone-detail').classList.remove('open')
+      document.getElementById('phone-detail').classList.remove('is-open')
       detailProduct = null
     }
 
-    function addToCartFromDetail() {
+    function addFromDetail() {
       if (detailProduct) {
-        addToCart(detailProduct.id)
+        addToCart(detailProduct)
         closeDetail()
       }
     }
 
     /* ── CART ───────────────────────────────────────────────── */
 
-    function addToCart(id) {
+    function addToCart(product) {
+      cart.push(product)
+      document.getElementById('cart-count').textContent = cart.length
+    }
+
+    function quickAdd(id) {
       const p = allProducts.find(x => x.id === id)
-      if (!p) return
-      cart.push(p)
-      document.getElementById('phone-cart-count').textContent = cart.length
+      if (p) addToCart(p)
     }
 
     function openCartPreview() {
       if (!cart.length) return
+
       const total    = cart.reduce((s, i) => s + i.price, 0)
       const discount = cart.length > 3 ? total * 0.10 : 0
       const final    = total - discount
-      alert(
-        `🛍 Cart (${cart.length} items)\n` +
-        `Subtotal: €${total.toFixed(2)}\n` +
-        (discount > 0 ? `Discount (10%): -€${discount.toFixed(2)}\n` : '') +
-        `Total: €${final.toFixed(2)}`
-      )
+
+      const lines = [
+        `🛍  Cart — ${cart.length} item${cart.length > 1 ? 's' : ''}`,
+        '',
+        ...cart.map(i => `• ${i.name}  €${i.price.toFixed(2)}`),
+        '',
+        `Subtotal:   €${total.toFixed(2)}`,
+        discount > 0 ? `Discount:  −€${discount.toFixed(2)}  (10% off)` : null,
+        `Total:      €${final.toFixed(2)}`,
+      ].filter(l => l !== null)
+
+      alert(lines.join('\n'))
     }
 
-    /* ── CODE TABS ──────────────────────────────────────────── */
+    /* ── CATALOG TABLE ──────────────────────────────────────── */
 
-    function switchTab(el, tabId) {
-      document.querySelectorAll('#tab-js,#tab-vue,#tab-axios').forEach(t => t.style.display = 'none')
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'))
-      document.getElementById(tabId).style.display = 'block'
-      el.classList.add('active')
-    }
+    function renderCatalogTable() {
+      const CATEGORY_COLORS = {
+        'Footwear':    'bg-primary-subtle text-primary-emphasis',
+        'Clothing':    'bg-success-subtle text-success-emphasis',
+        'Accessories': 'bg-warning-subtle text-warning-emphasis',
+        'Electronics': 'bg-info-subtle text-info-emphasis',
+      }
 
-    function switchDiscount(el, tabId) {
-      document.querySelectorAll('#disc-js,#disc-vue').forEach(t => t.style.display = 'none')
-      document.querySelectorAll('.code-block .tab-btn').forEach(b => {
-        if (b.closest('.code-block') === el.closest('.code-block')) b.classList.remove('active')
-      })
-      document.getElementById(tabId).style.display = 'block'
-      el.classList.add('active')
+      document.getElementById('catalog-table').innerHTML = allProducts.map(p => `
+        <tr>
+          <td class="text-secondary font-mono">${p.id}</td>
+          <td class="fw-semibold">${p.name}</td>
+          <td>
+            <span class="badge ${CATEGORY_COLORS[p.category] || 'bg-secondary-subtle text-secondary-emphasis'}">
+              ${p.category}
+            </span>
+          </td>
+          <td class="fw-bold">€${p.price.toFixed(2)}</td>
+        </tr>`).join('')
     }
 
     /* ── COPY ───────────────────────────────────────────────── */
@@ -471,7 +621,7 @@
       })
     }
 
-    /* ── BOOT ───────────────────────────────────────────────── */
+    /* ── START ──────────────────────────────────────────────── */
 
     init()
 
